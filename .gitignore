@@ -1,52 +1,28 @@
-# Prerequisites
-*.d
+.deps
+acinclude.m4
+aclocal.m4
+autom4te.cache/
+build/
+config.h
+config.log
+config.nice
+config.status
+config.guess
+config.h.in
+config.sub
+configure
+configure.in
+install-sh
+ltmain.sh
+missing
+mkinstalldirs
+run-tests.php
+Makefile
+Makefile.*
+libtool
+*~
+modules/
+.libs/
+base58.la
+base58.lo
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
