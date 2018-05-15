@@ -1,0 +1,14 @@
+// $Id$
+// vim:ft=javascript
+
+ARG_WITH("base58", "for base58 support", "no");
+
+if (PHP_SODIUM != "no") {
+    if (CHECK_LIB("libbase58.lib", "libbase58", PHP_BASE58) && CHECK_HEADER_ADD_INCLUDE("libbase58.h", "CFLAGS_BASE58")) {
+        EXTENSION("sodium", "libsodium.c");
+        AC_DEFINE('HAVE_BASE58', 1 , 'Have base58 support');
+        PHP_INSTALL_HEADERS("ext/base58/", "php_base58.h");
+    } else {
+        WARNING("base58 not enabled; libraries and headers not found");
+    }
+}

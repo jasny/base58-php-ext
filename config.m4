@@ -1,3 +1,6 @@
+dnl $Id$
+dnl config.m4 for extension base58
+
 PHP_ARG_WITH(base58, for base58 support,
 [  --with-base58[=DIR]       Include base58 support])
 
