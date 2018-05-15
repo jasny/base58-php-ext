@@ -62,7 +62,7 @@ static PHP_MINFO_FUNCTION(base58)
 
 PHP_FUNCTION(base58_encode)
 {
-    char *data;
+    const char *data;
     size_t data_len;
 
     char *b58;
@@ -75,7 +75,7 @@ PHP_FUNCTION(base58_encode)
     b58_len = ceil(data_len * 1.5);
     b58 = emalloc(b58_len);
 
-    if (!b58enc(b58, &b58_len, &data, data_len)) {
+    if (!b58enc(b58, &b58_len, data, data_len)) {
         php_error_docref(NULL TSRMLS_CC, E_WARNING, "Failed to base58 encode string");
         RETURN_FALSE;
     }
@@ -88,7 +88,7 @@ PHP_FUNCTION(base58_decode)
     char *data;
     size_t data_len;
 
-    char *b58;
+    const char *b58;
     size_t b58_len;
 
     if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &b58, &b58_len) == FAILURE) {
@@ -98,7 +98,7 @@ PHP_FUNCTION(base58_decode)
     data_len = b58_len;
     data = emalloc(data_len);
 
-    if (!b58tobin(data, &data_len, &b58, b58_len)) {
+    if (!b58tobin(data, &data_len, b58, b58_len)) {
         php_error_docref(NULL TSRMLS_CC, E_WARNING, "Failed to base58 decode string");
         RETURN_FALSE;
     }
