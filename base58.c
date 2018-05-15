@@ -72,7 +72,7 @@ PHP_FUNCTION(base58_encode)
         RETURN_FALSE;
     }
 
-    b58_len = ceil(data_len * 1.5);
+    b58_len = ceil(data_len * 1.5) + 1;
     b58 = emalloc(b58_len);
 
     if (!b58enc(b58, &b58_len, data, data_len)) {
@@ -80,7 +80,7 @@ PHP_FUNCTION(base58_encode)
         RETURN_FALSE;
     }
 
-    RETURN_STRINGL(b58, b58_len);
+    RETURN_STRINGL(b58, b58_len - 1);
 }
 
 PHP_FUNCTION(base58_decode)
@@ -98,7 +98,7 @@ PHP_FUNCTION(base58_decode)
     data_len = b58_len;
     data = emalloc(data_len);
 
-    if (!b58tobin(data, &data_len, b58, b58_len - 1)) {
+    if (!b58tobin(data, &data_len, b58, b58_len)) {
         php_error_docref(NULL TSRMLS_CC, E_WARNING, "Failed to base58 decode string");
         RETURN_FALSE;
     }
