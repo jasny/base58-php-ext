@@ -85,11 +85,11 @@ PHP_FUNCTION(base58_encode)
 
 PHP_FUNCTION(base58_decode)
 {
-    char *data;
-    size_t data_len;
-
     const char *b58;
     size_t b58_len;
+
+    char *data;
+    size_t data_len;
 
     if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &b58, &b58_len) == FAILURE) {
         RETURN_FALSE;
@@ -98,12 +98,13 @@ PHP_FUNCTION(base58_decode)
     data_len = b58_len;
     data = emalloc(data_len);
 
-    if (!b58tobin(data, &data_len, b58, b58_len)) {
+    if (!b58tobin(data, &data_len, b58, b58_len - 1)) {
         php_error_docref(NULL TSRMLS_CC, E_WARNING, "Failed to base58 decode string");
         RETURN_FALSE;
     }
 
-    RETURN_STRINGL(data, data_len);
+    // libbase58 starts at the end of the buffer, so skip preceding '\0' chars.
+    RETURN_STRINGL(data + (b58_len - data_len), data_len);
 }
 
 #endif

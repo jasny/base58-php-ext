@@ -1,6 +1,8 @@
 <?php
 
-$base58 = base58_encode("Hello world");
+$base58 = base58_encode($argv[1] ?? 'Hello world');
 
-echo $base58, " - ", base58_decode($base58), "\n";
+$value = base58_decode($base58);
+
+echo $base58, " <=> ", $value, "\n";
 
