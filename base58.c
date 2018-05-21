@@ -79,6 +79,8 @@ PHP_FUNCTION(base58_encode)
     b58 = zend_string_alloc(ceil(data_len * 1.5) + 1, 0);
 
     if (!b58enc(ZSTR_VAL(b58), &ZSTR_LEN(b58), data, data_len)) {
+        zend_string_free(b58);
+
         php_error_docref(NULL, E_WARNING, "Failed to base58 encode string");
         RETURN_FALSE;
     }
@@ -107,6 +109,8 @@ PHP_FUNCTION(base58_decode)
     data = emalloc(data_len);
 
     if (!b58tobin(data, &data_len, b58, b58_len)) {
+        efree(data);
+
         php_error_docref(NULL, E_WARNING, "Failed to base58 decode string");
         RETURN_FALSE;
     }
