@@ -1,20 +1,32 @@
 /*
-   +----------------------------------------------------------------------+
-   | PHP Version 7                                                        |
-   +----------------------------------------------------------------------+
-   | Copyright (c) 1997-2010 The PHP Group                                |
-   +----------------------------------------------------------------------+
-   | This source file is subject to version 3.01 of the PHP license,      |
-   | that is bundled with this package in the file LICENSE, and is        |
-   | available through the world-wide-web at the following url:           |
-   | http://www.php.net/license/3_01.txt                                  |
-   | If you did not receive a copy of the PHP license and are unable to   |
-   | obtain it through the world-wide-web, please send a note to          |
-   | license@php.net so we can mail you a copy immediately.               |
-   +----------------------------------------------------------------------+
-   | Author: Arnold Daniels <arnold@legalthings.io>                       |
-   +----------------------------------------------------------------------+
- */
+  +----------------------------------------------------------------------+
+  | Base58 PHP extension                                                 |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2018 Stichting LegalThings One foundation              |
+  +----------------------------------------------------------------------+
+  | Permission is hereby granted, free of charge, to any person          |
+  | obtaining a copy of this software and associated documentation files |
+  | (the "Software"), to deal in the Software without restriction,       |
+  | including without limitation the rights to use, copy, modify, merge, |
+  | publish, distribute, sublicense, and/or sell copies of the Software, |
+  | and to permit persons to whom the Software is furnished to do so,    |
+  | subject to the following conditions:                                 |
+  |                                                                      |
+  | The above copyright notice and this permission notice shall be       |
+  | included in all copies or substantial portions of the Software.      |
+  |                                                                      |
+  | THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,      |
+  | EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF   |
+  | MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND                |
+  | NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS  |
+  | BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN   |
+  | ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN    |
+  | CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE     |
+  | SOFTWARE.                                                            |
+  +----------------------------------------------------------------------+
+  | Author: Arnold Daniels <arnold@jasny.net>                            |
+  +----------------------------------------------------------------------+
+*/
 
 #ifdef HAVE_CONFIG_H
 # include "config.h"
@@ -44,7 +56,7 @@ zend_module_entry base58_module_entry = {
     NULL,
     NULL,
     NULL,
-    PHP_MINFO(base58),
+    NULL,
     PHP_BASE58_VERSION,
     STANDARD_MODULE_PROPERTIES
 };
@@ -53,34 +65,28 @@ zend_module_entry base58_module_entry = {
 ZEND_GET_MODULE(base58)
 #endif
 
-static PHP_MINFO_FUNCTION(base58)
-{
-	php_info_print_table_start();
-	php_info_print_table_row(2, "base58 functions", "enabled");
-	php_info_print_table_end();
-}
-
 PHP_FUNCTION(base58_encode)
 {
     const char *data;
     size_t data_len;
 
-    char *b58;
-    size_t b58_len;
+    zend_string *b58;
 
-    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &data, &data_len) == FAILURE) {
+    if (zend_parse_parameters(ZEND_NUM_ARGS(), "s", &data, &data_len) == FAILURE) {
         RETURN_FALSE;
     }
 
-    b58_len = ceil(data_len * 1.5) + 1;
-    b58 = emalloc(b58_len);
+    b58 = zend_string_alloc(ceil(data_len * 1.5) + 1, 0);
 
-    if (!b58enc(b58, &b58_len, data, data_len)) {
-        php_error_docref(NULL TSRMLS_CC, E_WARNING, "Failed to base58 encode string");
+    if (!b58enc(ZSTR_VAL(b58), &ZSTR_LEN(b58), data, data_len)) {
+        php_error_docref(NULL, E_WARNING, "Failed to base58 encode string");
         RETURN_FALSE;
     }
 
-    RETURN_STRINGL(b58, b58_len - 1);
+    /* Exclude ending '\0` from string length */
+    ZSTR_LEN(b58)--;
+
+    RETURN_STR(b58);
 }
 
 PHP_FUNCTION(base58_decode)
@@ -91,7 +97,9 @@ PHP_FUNCTION(base58_decode)
     char *data;
     size_t data_len;
 
-    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &b58, &b58_len) == FAILURE) {
+    zend_string *result;
+
+    if (zend_parse_parameters(ZEND_NUM_ARGS(), "s", &b58, &b58_len) == FAILURE) {
         RETURN_FALSE;
     }
 
@@ -99,12 +107,15 @@ PHP_FUNCTION(base58_decode)
     data = emalloc(data_len);
 
     if (!b58tobin(data, &data_len, b58, b58_len)) {
-        php_error_docref(NULL TSRMLS_CC, E_WARNING, "Failed to base58 decode string");
+        php_error_docref(NULL, E_WARNING, "Failed to base58 decode string");
         RETURN_FALSE;
     }
 
-    // libbase58 starts at the end of the buffer, so skip preceding '\0' chars.
-    RETURN_STRINGL(data + (b58_len - data_len), data_len);
+    /* libbase58 starts at the end of the buffer, so skip preceding '\0' chars. */
+    result = zend_string_init(data + (b58_len - data_len), data_len, 0);
+    efree(data);
+
+    RETURN_STR(result);
 }
 
 #endif
