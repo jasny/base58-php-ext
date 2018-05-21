@@ -1,0 +1,4 @@
+branches:
+  # set to master once this works
+  only:
+    - windows-build
