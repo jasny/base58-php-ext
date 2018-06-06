@@ -27,21 +27,12 @@ setlocal enableextensions enabledelayedexpansion
 
   rem Build libbas58
 	cd /d C:\projects\libbase58
+
+	cl /W4 /c base58.obj
+	link /dll /export:b58_sha256_impl /export:b58tobin /export:b58check /export:b58enc /export:b58check_enc /implib:base58.lib /out:base58.dll base58.obj
+	copy /v base58.dll C:\projects\php-src\ext\base58\
+	copy /v base58.lib C:\projects\php-src\ext\base58\
   
-  cmd /c cscript /nologo win32\build\buildconf.js
-
-	if %errorlevel% neq 0 exit /b 3
-
-  cmd /c configure.bat
-
-	if %errorlevel% neq 0 exit /b 3
-
-  nmake /NOLOGO
-
-	if %errorlevel% neq 0 exit /b 3
-
-  nmake install
-
   rem Build PHP
 	cd /d C:\projects\php-src
 

@@ -4,6 +4,10 @@ setlocal enableextensions enabledelayedexpansion
 
   echo Cloning Bitcoin libbase58 repository
   git clone -q --depth=1 https://github.com/bitcoin/libbase58.git C:\projects\libbase58
+  pushd C:\projects\libbase58
+  git fetch origin pull/7/head:holland-windows-build
+  git checkout holland-windows-build
+  popd
 
 	if not exist "%PHP_BUILD_CACHE_BASE_DIR%" (
 		echo Creating %PHP_BUILD_CACHE_BASE_DIR%
