@@ -1,9 +1,9 @@
 // $Id$
 // vim:ft=javascript
 
-ARG_WITH("base58", "for base58 support", "no");
+PHP_ARG_WITH(base58, for base58 support,[ --with-base58[=DIR] Include base58 support])
 
-if (PHP_SODIUM != "no") {
+if (PHP_BASE58 != "no") {
     if (CHECK_LIB("base58.lib", "base58", PHP_BASE58) && CHECK_HEADER_ADD_INCLUDE("libbase58.h", "CFLAGS_BASE58")) {
         EXTENSION("base58", "base58.c");
         AC_DEFINE('HAVE_BASE58', 1 , 'Have base58 support');
@@ -12,7 +12,6 @@ if (PHP_SODIUM != "no") {
         WARNING("base58 not enabled; libraries and headers not found");
     }
 }
-else
-{
-	WARNING("PHP_SODIUM is no");
+else {
+	WARNING("PHP_BASE58 is no");
 }
