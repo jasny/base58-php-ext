@@ -29,9 +29,10 @@ setlocal enableextensions enabledelayedexpansion
 	cd /d C:\projects\libbase58
 
 	cl /W4 /c base58.c
-	link /dll /export:b58_sha256_impl /export:b58tobin /export:b58check /export:b58enc /export:b58check_enc /implib:base58.lib /out:base58.dll base58.obj
-	copy /v base58.dll C:\projects\php-src\ext\base58\
-	copy /v base58.lib C:\projects\php-src\ext\base58\
+	link /dll /export:b58_sha256_impl /export:b58tobin /export:b58check /export:b58enc /export:b58check_enc /implib:libbase58.lib /out:libbase58.dll base58.obj
+	copy /v libbase58.dll C:\projects\php-src\ext\base58\
+	copy /v libbase58.lib C:\projects\php-src\ext\base58\
+	copy /v libbase58.h C:\projects\php-src\ext\base58\
   
   rem Build PHP
 	cd /d C:\projects\php-src
@@ -40,7 +41,7 @@ setlocal enableextensions enabledelayedexpansion
 
 	if %errorlevel% neq 0 exit /b 3
 
-	cmd /c configure.bat --disable-all --with-mp=auto --enable-cli --%ZTS_STATE%-zts --with-base58=shared --enable-object-out-dir=%PHP_BUILD_OBJ_DIR% --with-config-file-scan-dir=%APPVEYOR_BUILD_FOLDER%\build\modules.d --with-prefix=%APPVEYOR_BUILD_FOLDER%\build --with-php-build=%DEPS_DIR%
+	cmd /c configure.bat --disable-all --with-mp=auto --enable-cli --%ZTS_STATE%-zts --with-base58=C:\projects\php-src\ext\base58\libbase58\ --enable-object-out-dir=%PHP_BUILD_OBJ_DIR% --with-config-file-scan-dir=%APPVEYOR_BUILD_FOLDER%\build\modules.d --with-prefix=%APPVEYOR_BUILD_FOLDER%\build --with-php-build=%DEPS_DIR%
 
 	if %errorlevel% neq 0 exit /b 3
 
