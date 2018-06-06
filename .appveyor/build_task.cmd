@@ -29,8 +29,14 @@ setlocal enableextensions enabledelayedexpansion
 	cd /d C:\projects\libbase58
 
 	cl /W4 /c base58.c
-	link /dll /export:b58_sha256_impl /export:b58tobin /export:b58check /export:b58enc /export:b58check_enc /implib:libbase58.lib /out:libbase58.dll base58.obj
-	copy /v libbase58.dll C:\projects\php-src\ext\base58\
+
+	rem create static library
+	lib /name:libbase58.lib base58.obj
+
+	rem create DLL
+	rem link /dll /export:b58_sha256_impl /export:b58tobin /export:b58check /export:b58enc /export:b58check_enc /implib:libbase58.lib /out:libbase58.dll base58.obj
+	rem copy /v libbase58.dll C:\projects\php-src\ext\base58\
+	
 	copy /v libbase58.lib C:\projects\php-src\ext\base58\
 	copy /v libbase58.h C:\projects\php-src\ext\base58\
   
