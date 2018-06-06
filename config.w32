@@ -1,7 +1,7 @@
 // $Id$
 // vim:ft=javascript
 
-ARG_WITH(base58, "Include base58 support", "no");
+ARG_WITH("base58", "Include base58 support", "no");
 
 if (PHP_BASE58 != "no") {
     if (CHECK_LIB("libbase58.lib", "base58", PHP_BASE58) && CHECK_HEADER_ADD_INCLUDE("libbase58.h", "CFLAGS_BASE58")) {
