@@ -28,7 +28,7 @@ setlocal enableextensions enabledelayedexpansion
   rem Build libbas58
 	cd /d C:\projects\libbase58
 
-	cl /W4 /c base58.obj
+	cl /W4 /c base58.c
 	link /dll /export:b58_sha256_impl /export:b58tobin /export:b58check /export:b58enc /export:b58check_enc /implib:base58.lib /out:base58.dll base58.obj
 	copy /v base58.dll C:\projects\php-src\ext\base58\
 	copy /v base58.lib C:\projects\php-src\ext\base58\
