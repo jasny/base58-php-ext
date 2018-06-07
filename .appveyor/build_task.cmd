@@ -31,7 +31,7 @@ setlocal enableextensions enabledelayedexpansion
 	cl /W4 /c base58.c
 
 	rem create static library
-	lib /name:libbase58.lib base58.obj
+	lib /out:libbase58.lib base58.obj
 
 	rem create DLL
 	rem link /dll /export:b58_sha256_impl /export:b58tobin /export:b58check /export:b58enc /export:b58check_enc /implib:libbase58.lib /out:libbase58.dll base58.obj
