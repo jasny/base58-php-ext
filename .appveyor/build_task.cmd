@@ -67,8 +67,20 @@ setlocal enableextensions enabledelayedexpansion
     echo dir %APPVEYOR_BUILD_FOLDER%\build\ext\
 	dir %APPVEYOR_BUILD_FOLDER%\build\ext\
   	echo "----------"
+    echo dir %APPVEYOR_BUILD_FOLDER%\build\
+	dir %APPVEYOR_BUILD_FOLDER%\build\
+  	echo "----------"
 	echo dir %APPVEYOR_BUILD_FOLDER%\
 	dir %APPVEYOR_BUILD_FOLDER%\
+  	echo "----------"
+	echo dir C:\projects\php-src\ext\base58\
+	dir C:\projects\php-src\ext\base58\
+  	echo "----------"
+	echo dir C:\projects\php-src\ext\
+	dir C:\projects\php-src\ext\
+  	echo "----------"
+	echo dir C:\projects\php-src\
+	dir C:\projects\php-src\
   	echo "----------"
 	echo""
 
