@@ -67,7 +67,7 @@ setlocal enableextensions enabledelayedexpansion
 	set TEST_PHP_DLL=%APPVEYOR_BUILD_FOLDER%\build\php7.dll
 	set TEST_PHP_JUNIT=c:\tests_tmp\tests-junit.xml
 rem	if "%OPCACHE%" equ "1" set TEST_PHP_ARGS=!TEST_PHP_ARGS! -d extension=%APPVEYOR_BUILD_FOLDER%\build\ext\php_opcache.so -d opcache.enable=1 -d opcache.enable_cli=1
-	set TEST_PHP_ARGS=-n -d -foo=1 -d extension=base58 -dxdebug.remote_enable=1
+	set TEST_PHP_ARGS=-n -d -foo=1 -d extension=%TEST_PHP_DLL% -dxdebug.remote_enable=1
 	set SKIP_SLOW_TESTS=1
 	set SKIP_DBGP_TESTS=1
 	set SKIP_IPV6_TESTS=1
@@ -85,10 +85,10 @@ rem	if "%OPCACHE%" equ "1" set TEST_PHP_ARGS=!TEST_PHP_ARGS! -d extension=%APPVE
 
 	cd /d %APPVEYOR_BUILD_FOLDER%
 
-	if not exist "%APPVEYOR_BUILD_FOLDER%\build\ext\php_base58.dll" exit /b 3
+	if not exist "%APPVEYOR_BUILD_FOLDER%\build\php7.dll" exit /b 3
 
 	xcopy %APPVEYOR_BUILD_FOLDER%\LICENSE %APPVEYOR_BUILD_FOLDER%\php_base58-%PHP_REL%-!ZTS_SHORT!-%PHP_BUILD_CRT%-%PHP_SDK_ARCH%\ /y /f
-	echo F|xcopy %APPVEYOR_BUILD_FOLDER%\build\ext\php_base58.dll %APPVEYOR_BUILD_FOLDER%\php_base58-%PHP_REL%-!ZTS_SHORT!-%PHP_BUILD_CRT%-%PHP_SDK_ARCH%\php_base58-%APPVEYOR_REPO_TAG_NAME%-%PHP_REL%-%PHP_BUILD_CRT%!ZTS_IN_FILENAME!!ARCH_IN_FILENAME!.dll /y /f
+	echo F|xcopy %APPVEYOR_BUILD_FOLDER%\build\php7.dll %APPVEYOR_BUILD_FOLDER%\php_base58-%PHP_REL%-!ZTS_SHORT!-%PHP_BUILD_CRT%-%PHP_SDK_ARCH%\php_base58-%APPVEYOR_REPO_TAG_NAME%-%PHP_REL%-%PHP_BUILD_CRT%!ZTS_IN_FILENAME!!ARCH_IN_FILENAME!.dll /y /f
 	7z a php_base58-%APPVEYOR_REPO_TAG_NAME%-%PHP_REL%-%PHP_BUILD_CRT%!ZTS_IN_FILENAME!!ARCH_IN_FILENAME!.zip %APPVEYOR_BUILD_FOLDER%\php_base58-%PHP_REL%-!ZTS_SHORT!-%PHP_BUILD_CRT%-%PHP_SDK_ARCH%\*
 	appveyor PushArtifact php_base58-%APPVEYOR_REPO_TAG_NAME%-%PHP_REL%-%PHP_BUILD_CRT%!ZTS_IN_FILENAME!!ARCH_IN_FILENAME!.zip -FileName php_base58-%APPVEYOR_REPO_TAG_NAME%-%PHP_REL%-%PHP_BUILD_CRT%!ZTS_IN_FILENAME!!ARCH_IN_FILENAME!.zip
 endlocal
