@@ -3,7 +3,7 @@ version: '{branch}.{build}'
 branches:
   # set to master once this works
   only:
-    - pr-windows-build
+    - mb-windows-build
 
 image: Visual Studio 2015
 
