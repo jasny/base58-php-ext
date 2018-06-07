@@ -49,7 +49,7 @@ setlocal enableextensions enabledelayedexpansion
 
 	if %errorlevel% neq 0 exit /b 3
 
-	cmd /c configure.bat --disable-all --with-mp=auto --enable-cli --%ZTS_STATE%-zts --with-base58=C:\projects\php-src\ext\base58\libbase58\ --enable-object-out-dir=%PHP_BUILD_OBJ_DIR% --with-config-file-scan-dir=%APPVEYOR_BUILD_FOLDER%\build\modules.d --with-prefix=%APPVEYOR_BUILD_FOLDER%\build --with-php-build=%DEPS_DIR%
+	cmd /c configure.bat --disable-all --with-mp=auto --enable-cli --%ZTS_STATE%-zts --with-base58=shared --enable-object-out-dir=%PHP_BUILD_OBJ_DIR% --with-config-file-scan-dir=%APPVEYOR_BUILD_FOLDER%\build\modules.d --with-prefix=%APPVEYOR_BUILD_FOLDER%\build --with-php-build=%DEPS_DIR%
 
 	if %errorlevel% neq 0 exit /b 3
 
@@ -60,6 +60,7 @@ setlocal enableextensions enabledelayedexpansion
 
 	if %errorlevel% neq 0 exit /b 3
 
+
 	rem **********************************************************************
 	rem TODO -- 06/07/2018:MAB
 	rem
@@ -69,6 +70,16 @@ setlocal enableextensions enabledelayedexpansion
 	rem is happening. This needs to be resolved in order for the tests and
 	rem publishing steps can succeed.
 	rem **********************************************************************
+	echo ""
+	echo "-------------------------------------------"
+	echo "dir /s %APPVEYOR_BUILD_FOLDER%\*base58*"
+	dir /s %APPVEYOR_BUILD_FOLDER%\*base58*
+	echo "-------------------------------------------"
+	echo "dir /s C:\projects\php-src\*base58*"
+	dir /s C:\projects\php-src\*base58*
+	echo "-------------------------------------------"
+	echo ""
+
 
   rem Run tests
 	mkdir c:\tests_tmp
