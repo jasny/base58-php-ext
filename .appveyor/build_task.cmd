@@ -64,14 +64,11 @@ setlocal enableextensions enabledelayedexpansion
   rem TODO: Diagnosing -- REMOVE when done
   	echo ""
   	echo "----------"
-    echo dir /s %APPVEYOR_BUILD_FOLDER%\artifacts
-	dir /s %APPVEYOR_BUILD_FOLDER%\artifacts
+    echo dir /s %APPVEYOR_BUILD_FOLDER%\*.dll
+	dir /s %APPVEYOR_BUILD_FOLDER%\*.dll
   	echo "----------"
-	echo dir /s C:\projects\php-src\ext\base58\
-	dir /s C:\projects\php-src\ext\base58\
-  	echo "----------"
-	echo dir /s C:\projects\php-src\build
-	dir /s C:\projects\php-src\build
+	echo dir /s C:\projects\php-src\*.dll
+	dir /s C:\projects\php-src\*.dll
   	echo "----------"
 	echo""
 
