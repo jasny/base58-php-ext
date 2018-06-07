@@ -38,11 +38,7 @@
 #include "zend_exceptions.h"
 #include "ext/standard/info.h"
 
-#if defined(WIN32)
-#include "libbase58.h"
-#else
 #include <libbase58.h>
-#endif
 
 #if HAVE_BASE58
 

@@ -60,6 +60,18 @@ setlocal enableextensions enabledelayedexpansion
 
 	if %errorlevel% neq 0 exit /b 3
 
+
+  rem TODO: Diagnosing -- REMOVE when done
+  	echo ""
+  	echo "----------"
+    echo dir %APPVEYOR_BUILD_FOLDER%\build\ext\
+	dir %APPVEYOR_BUILD_FOLDER%\build\ext\
+  	echo "----------"
+	echo dir %APPVEYOR_BUILD_FOLDER%\
+	dir %APPVEYOR_BUILD_FOLDER%\
+  	echo "----------"
+	echo""
+
   rem Run tests
 	mkdir c:\tests_tmp
 	set TEST_PHP_EXECUTABLE=%APPVEYOR_BUILD_FOLDER%\build\php.exe
