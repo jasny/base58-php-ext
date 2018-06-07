@@ -53,12 +53,13 @@ setlocal enableextensions enabledelayedexpansion
 
 	if %errorlevel% neq 0 exit /b 3
 
+rem TODO: Adding /D /P for diagnostics only -- remove before merge
 	nmake /NOLOGO
-	if %errorlevel% neq 0 exit /b 3
+rem	if %errorlevel% neq 0 exit /b 3
 
 	nmake install
 
-	if %errorlevel% neq 0 exit /b 3
+rem	if %errorlevel% neq 0 exit /b 3
 
 
 	rem **********************************************************************
@@ -77,6 +78,9 @@ setlocal enableextensions enabledelayedexpansion
 	echo "-------------------------------------------"
 	echo "dir /s C:\projects\php-src\*base58*"
 	dir /s C:\projects\php-src\*base58*
+	echo "-------------------------------------------"
+	echo "dir /s C:\obj\*base58*"
+	dir /s C:\obj\*base58*
 	echo "-------------------------------------------"
 	echo ""
 
