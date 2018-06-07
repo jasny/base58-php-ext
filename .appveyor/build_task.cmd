@@ -36,9 +36,11 @@ setlocal enableextensions enabledelayedexpansion
 	rem create DLL
 	rem link /dll /export:b58_sha256_impl /export:b58tobin /export:b58check /export:b58enc /export:b58check_enc /implib:libbase58.lib /out:libbase58.dll base58.obj
 	rem copy /v libbase58.dll C:\projects\php-src\ext\base58\
-	
-	copy /v libbase58.lib C:\projects\php-src\ext\base58\
-	copy /v libbase58.h C:\projects\php-src\ext\base58\
+
+	echo copy /v libbase58.lib %DEPS_DIR%\lib\
+	copy /v libbase58.lib %DEPS_DIR%\lib\
+	echo copy /v libbase58.h %DEPS_DIR%\include\
+	copy /v libbase58.h %DEPS_DIR%\include\
   
   rem Build PHP
 	cd /d C:\projects\php-src

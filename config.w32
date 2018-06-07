@@ -4,8 +4,10 @@
 ARG_WITH("base58", "Include base58 support", "no");
 
 if (PHP_BASE58 != "no") {
-	EXTENSION("base58", "base58.c");
-   	AC_DEFINE('HAVE_BASE58', 1 , 'Have base58 support');
-	ADD_FLAG("LIBS_BASE58", "libbase58.lib");
-    PHP_INSTALL_HEADERS("ext/base58/", "php_base58.h");
+    if (CHECK_LIB("libbase58.lib", "base58", PHP_BASE58) &&
+		CHECK_HEADER_ADD_INCLUDE("libbase58.h", "CFLAGS_BASE58")) {
+		EXTENSION("base58", "base58.c");
+   		AC_DEFINE('HAVE_BASE58', 1 , 'Have base58 support');
+    	PHP_INSTALL_HEADERS("ext/base58/", "php_base58.h");
+	}
 }
