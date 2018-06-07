@@ -43,20 +43,18 @@ setlocal enableextensions enabledelayedexpansion
 	copy /v libbase58.h %DEPS_DIR%\include\
   
   rem Build PHP
-rem  	cd /d C:\projects\php-src
-  rem Build extension
-	cd /d C:\projects\php-src\ext\base58
+  	cd /d C:\projects\php-src
 
-	cmd /c C:\projects\php-src\buildconf.bat --force
+	cmd /c buildconf.bat --force
 
 	if %errorlevel% neq 0 exit /b 3
 
-	cmd /c C:\projects\php-src\configure.bat --disable-all --with-base58=shared --with-mp=auto --enable-cli --%ZTS_STATE%-zts --enable-object-out-dir=%PHP_BUILD_OBJ_DIR% --with-config-file-scan-dir=%APPVEYOR_BUILD_FOLDER%\build\modules.d --with-prefix=%APPVEYOR_BUILD_FOLDER%\build --with-php-build=%DEPS_DIR%
+	cmd /c configure.bat --disable-all --with-base58=shared --with-mp=auto --enable-cli --%ZTS_STATE%-zts --enable-object-out-dir=%PHP_BUILD_OBJ_DIR% --with-config-file-scan-dir=%APPVEYOR_BUILD_FOLDER%\build\modules.d --with-prefix=%APPVEYOR_BUILD_FOLDER%\build --with-php-build=%DEPS_DIR%
 
 	if %errorlevel% neq 0 exit /b 3
 
 rem TODO: Adding /D /P for diagnostics only -- remove before merge
-	nmake /NOLOGO
+	nmake /NOLOGO /D /P
 rem	if %errorlevel% neq 0 exit /b 3
 
 	nmake install
