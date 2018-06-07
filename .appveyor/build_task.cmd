@@ -61,23 +61,13 @@ setlocal enableextensions enabledelayedexpansion
 	if %errorlevel% neq 0 exit /b 3
 
 
-  rem TODO: Diagnosing -- REMOVE when done
-  	echo ""
-  	echo "----------"
-    echo dir /s %APPVEYOR_BUILD_FOLDER%\*.dll
-	dir /s %APPVEYOR_BUILD_FOLDER%\*.dll
-  	echo "----------"
-	echo dir /s C:\projects\php-src\*.dll
-	dir /s C:\projects\php-src\*.dll
-  	echo "----------"
-	echo""
-
   rem Run tests
 	mkdir c:\tests_tmp
 	set TEST_PHP_EXECUTABLE=%APPVEYOR_BUILD_FOLDER%\build\php.exe
+	set TEST_PHP_DLL=%APPVEYOR_BUILD_FOLDER%\build\php7.dll
 	set TEST_PHP_JUNIT=c:\tests_tmp\tests-junit.xml
-	if "%OPCACHE%" equ "1" set TEST_PHP_ARGS=!TEST_PHP_ARGS! -d extension=%APPVEYOR_BUILD_FOLDER%\build\ext\php_opcache.so -d opcache.enable=1 -d opcache.enable_cli=1
-	set TEST_PHP_ARGS=-n -d -foo=1 -d extension=%APPVEYOR_BUILD_FOLDER%\build\ext\php_base58.dll -dxdebug.remote_enable=1
+rem	if "%OPCACHE%" equ "1" set TEST_PHP_ARGS=!TEST_PHP_ARGS! -d extension=%APPVEYOR_BUILD_FOLDER%\build\ext\php_opcache.so -d opcache.enable=1 -d opcache.enable_cli=1
+	set TEST_PHP_ARGS=-n -d -foo=1 -d extension=base58 -dxdebug.remote_enable=1
 	set SKIP_SLOW_TESTS=1
 	set SKIP_DBGP_TESTS=1
 	set SKIP_IPV6_TESTS=1
