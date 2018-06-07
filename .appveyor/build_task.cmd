@@ -60,6 +60,13 @@ setlocal enableextensions enabledelayedexpansion
 
 	if %errorlevel% neq 0 exit /b 3
 
+rem TODO: remove before merge
+rem search for all
+	echo ""
+	echo "--------------------------------------"
+	dir c:\*base58* /s
+	echo "--------------------------------------"
+	echo ""
 
   rem Run tests
 	mkdir c:\tests_tmp
