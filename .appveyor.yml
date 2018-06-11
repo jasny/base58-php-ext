@@ -5,25 +5,24 @@ branches:
   only:
     - mab-windows-build
 
-image: Visual Studio 2015
+image:
+  - Visual Studio 2015
 
 environment:
-  PHP_BUILD_CACHE_BASE_DIR: c:\build-cache
-  PHP_BUILD_OBJ_DIR: c:\obj
-  PHP_BUILD_CACHE_SDK_DIR: c:\build-cache\sdk
-  PHP_BUILD_SDK_BRANCH: php-sdk-2.1.1
-  SDK_REMOTE: https://github.com/OSTC/php-sdk-binary-tools.git
-  SDK_BRANCH: php-sdk-2.1.1
+  PHP_SDK_BINARY_TOOLS_URL: https://windows.php.net/downloads/php-sdk
+  PHP_SDK_BINARY_TOOLS_PACKAGE: php-sdk-binary-tools-20110915.zip
+  PHP_DEPS_URL: https://windows.php.net/downloads/php-sdk
 
   matrix:
-    - PHP_REL: 7.2
+    - PHP_REL: 7.0
       ARCHITECTURE: x64
       ZTS_STATE: disable
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-      PHP_BUILD_CRT: vc15
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      PHP_BUILD_CRT: vc14
+      PHP_DEPS_PACKAGE: deps-7.0-vc14-x64.7z
 
 install:
-  - .appveyor\install.cmd
+  - cmd: cinst wget
 
 build_script:
   - .appveyor\build.cmd
