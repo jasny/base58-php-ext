@@ -22,7 +22,9 @@ environment:
       PHP_DEPS_PACKAGE: deps-7.0-vc14-x64.7z
 
 install:
-  - cmd: cinst wget
+- cmd: cinst wget
+- cmd: >-
+    "C:\Program Files (x86)\Microsoft Visual Studio\2015\Community\VC\Auxiliary\Build\vcvarsall.bat" %ARCH%
 
 build_script:
   - .appveyor\build.cmd
