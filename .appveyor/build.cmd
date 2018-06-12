@@ -45,8 +45,8 @@ setlocal enableextensions enabledelayedexpansion
 	REM perform the build
 	cmd /c bin\phpsdk_setvars.bat
 	pushd phpdev\vc14\x64\php-src
-	buildconf --force
-	configure --disable-all --enable-cli --with-extra-includes=c:\projects\libbase58 --with-extra-libs=c:\projects\libbase58 --with-base58=shared
+	cmd /c buildconf --force
+	cmd /c configure --disable-all --enable-cli --with-extra-includes=c:\projects\libbase58 --with-extra-libs=c:\projects\libbase58 --with-base58=shared
 	nmake
 
 
