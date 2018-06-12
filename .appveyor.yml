@@ -29,7 +29,7 @@ environment:
 install:
   - cmd: cinst wget
   - cmd: >-
-        "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\vcvars32.bat" %ARCH%
+        "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" %ARCH%
 
 build_script:
   - .appveyor\build.cmd
