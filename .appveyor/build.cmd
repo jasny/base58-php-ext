@@ -32,9 +32,14 @@ setlocal enableextensions enabledelayedexpansion
 	7z x -y %PHP_DEPS_PACKAGE%
 	popd
 
+	REM TODO:debugging
+	dir c:\projects\php-sdk
+	dir c:\projects\php-sdk\phpdev\vc14\x64
+	dir c:\projects\php-sdk\phpdev\vc14\x64\php-src
+
 	REM copy the extension into the PHP tree
 	mkdir c:\projects\php-sdk\phpdev\php-src\ext\base58
-	xcopy c:\projects\base58-php-exe\*.* c:\projects\php-sdk\phpdev\php-src\ext\base58 /s/e/v
+	xcopy c:\projects\base58-php-ext\*.* c:\projects\php-sdk\phpdev\vc14\x64\php-src\ext\base58 /s/e/v
 	
 	REM perform the build
 	cmd /c bin\phpsdk_setvars.bat
