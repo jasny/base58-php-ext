@@ -33,15 +33,13 @@ setlocal enableextensions enabledelayedexpansion
 	popd
 	popd
 
-	REM TODO:debugging
-	dir c:\projects\php-sdk
-	dir c:\projects\php-sdk\phpdev\vc14\x64
-	dir c:\projects\php-sdk\phpdev\vc14\x64\php-src
-
 	REM copy the extension into the PHP tree
 	mkdir c:\projects\php-sdk\phpdev\vc14\x64\php-src\ext\base58
 	xcopy c:\projects\base58-php-ext\*.* c:\projects\php-sdk\phpdev\vc14\x64\php-src\ext\base58 /s/e/v
 	
+	REM bison is needed for the build, add MSYS to the path
+	set PATH=c:\MinGW\msys\1.0\bin;%PATH%
+
 	REM perform the build
 	cmd /c bin\phpsdk_setvars.bat
 	pushd phpdev\vc14\x64\php-src
