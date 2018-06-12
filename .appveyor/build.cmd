@@ -37,8 +37,9 @@ setlocal enableextensions enabledelayedexpansion
 	mkdir c:\projects\php-sdk\phpdev\vc14\x64\php-src\ext\base58
 	xcopy c:\projects\base58-php-ext\*.* c:\projects\php-sdk\phpdev\vc14\x64\php-src\ext\base58 /s/e/v
 	
-	REM bison is needed for the build, add MSYS to the path
-	set PATH=c:\MinGW\msys\1.0\bin;%PATH%
+	REM The bison utility is needed for the PHP build, so add MSYS to the path.
+	REM Note: Add to the end to ensure MSVC tools are found firts.
+	set PATH=%PATH%;c:\MinGW\msys\1.0\bin
 
 	REM perform the build
 	cmd /c bin\phpsdk_setvars.bat
