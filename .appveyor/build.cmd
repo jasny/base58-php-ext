@@ -20,7 +20,7 @@ setlocal enableextensions enabledelayedexpansion
 	cd C:\projects\php-sdk
     wget %PHP_SDK_BINARY_TOOLS_URL%/%PHP_SDK_BINARY_TOOLS_PACKAGE% --no-check-certificate -q -O %PHP_SDK_BINARY_TOOLS_PACKAGE%
     7z x -y %PHP_SDK_BINARY_TOOLS_PACKAGE%
-	bin\phpsdk_buildtree.bat phpdev
+	cmd /c bin\phpsdk_buildtree.bat phpdev
 	pushd phpdev
 	ren vc9 vc14
 	pushd vc14\x64
@@ -37,10 +37,10 @@ setlocal enableextensions enabledelayedexpansion
 	xcopy c:\projects\base58-php-exe\*.* c:\projects\php-sdk\phpdev\php-src\ext\base58 /s/e/v
 	
 	REM perform the build
-	bin\phpsdk_setvars.bat
+	cmd /c bin\phpsdk_setvars.bat
 	pushd phpdev\vc14\x64\php-src
-	buildconf
-	configure --disable-all --enable-cli --with-extra-includes=c:\projects\libbase58 --with-extra-libs=c:\projects\libbase58 --with-base58=shared
+	cmd /c buildconf.bat --force
+	cmd /c configure.bat --disable-all --enable-cli --with-extra-includes=c:\projects\libbase58 --with-extra-libs=c:\projects\libbase58 --with-base58=shared
 	nmake
 
 
