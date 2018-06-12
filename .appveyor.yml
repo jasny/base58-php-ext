@@ -16,6 +16,7 @@ environment:
   matrix:
     - PHP_REL: 7.0
       ARCHITECTURE: x64
+      ARCH: amd64
       ZTS_STATE: disable
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       PHP_BUILD_CRT: vc14
