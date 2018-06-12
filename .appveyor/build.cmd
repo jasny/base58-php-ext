@@ -31,6 +31,7 @@ setlocal enableextensions enabledelayedexpansion
 	wget %PHP_DEPS_URL%/%PHP_DEPS_PACKAGE% --no-check-certificate -q -O %PHP_DEPS_PACKAGE%
 	7z x -y %PHP_DEPS_PACKAGE%
 	popd
+	popd
 
 	REM TODO:debugging
 	dir c:\projects\php-sdk
@@ -38,7 +39,7 @@ setlocal enableextensions enabledelayedexpansion
 	dir c:\projects\php-sdk\phpdev\vc14\x64\php-src
 
 	REM copy the extension into the PHP tree
-	mkdir c:\projects\php-sdk\phpdev\php-src\ext\base58
+	mkdir c:\projects\php-sdk\phpdev\vc14\x64\php-src\ext\base58
 	xcopy c:\projects\base58-php-ext\*.* c:\projects\php-sdk\phpdev\vc14\x64\php-src\ext\base58 /s/e/v
 	
 	REM perform the build
