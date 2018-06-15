@@ -36,6 +36,8 @@ setlocal enableextensions enabledelayedexpansion
 	REM copy the extension into the PHP tree
 	mkdir c:\projects\php-sdk\phpdev\vc14\x64\php-src\ext\base58
 	xcopy c:\projects\base58-php-ext\*.* c:\projects\php-sdk\phpdev\vc14\x64\php-src\ext\base58 /s/e/v
+	pushd c:\projects\php-sdk\phpdev\vc14\x64\php-src\ext\base58
+	del /q CREDITS
 	
 	REM The bison utility is needed for the PHP build, so add MSYS to the path.
 	REM Note: Add to the end to ensure MSVC tools are found firts.
@@ -47,7 +49,7 @@ setlocal enableextensions enabledelayedexpansion
 	cmd /c buildconf --force
 	cmd /c configure --disable-all --enable-cli --with-extra-includes=c:\projects\libbase58 --with-extra-libs=c:\projects\libbase58 --with-base58=shared
 	nmake
-
+	popd
 
 	REM TODO:debugging
 	dir php_base58.dll /s
