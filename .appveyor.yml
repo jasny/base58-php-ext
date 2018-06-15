@@ -34,6 +34,9 @@ install:
 build_script:
   - .appveyor\build.cmd
 
+test_script:
+  - cmd: C:\projects\php-sdk\phpdev\vc14\x64\php-src\x64\Release_TS\php.exe C:\projects\php-sdk\phpdev\vc14\x64\php-src\run-tests.php C:\projects\php-sdk\phpdev\vc14\x64\php-src\ext\base58 -q --show-diff
+
 # Uncomment the following two lines to use RDP on finish, blocking
 # until the "lock" file on the VM desktop is deleted.
 #on_finish:
