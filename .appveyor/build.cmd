@@ -38,6 +38,7 @@ setlocal enableextensions enabledelayedexpansion
 	xcopy c:\projects\base58-php-ext\*.* c:\projects\php-sdk\phpdev\vc14\x64\php-src\ext\base58 /s/e/v
 	pushd c:\projects\php-sdk\phpdev\vc14\x64\php-src\ext\base58
 	del /q CREDITS
+	popd
 	
 	REM The bison utility is needed for the PHP build, so add MSYS to the path.
 	REM Note: Add to the end to ensure MSVC tools are found firts.
