@@ -2,8 +2,6 @@
 
 setlocal enableextensions enabledelayedexpansion
 
-	"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" %ARCH%
-
 	REM pull and build bitcoin/libbase58
 	
 	echo Cloning Bitcoin libbase58 repository ...

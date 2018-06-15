@@ -27,7 +27,9 @@ environment:
 #  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
     
 install:
-  - .appveyor\install.cmd
+  - cmd: cinst wget
+  - cmd: >-
+         "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" %ARCH%
 
 build_script:
   - .appveyor\build.cmd
