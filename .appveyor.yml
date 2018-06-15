@@ -3,7 +3,7 @@ version: '{branch}.{build}'
 branches:
   # set to master once this works
   only:
-    - mab-windows-build
+    - windows-build-mab
 
 image:
   - Visual Studio 2015
