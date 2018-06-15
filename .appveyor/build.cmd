@@ -59,4 +59,3 @@ setlocal enableextensions enabledelayedexpansion
 
 endlocal
 
-exit /b 0
