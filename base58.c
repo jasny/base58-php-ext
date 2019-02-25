@@ -42,9 +42,17 @@
 
 #if HAVE_BASE58
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_base58_encode, 0, 0, 1)
+    ZEND_ARG_TYPE_INFO(0, data, IS_STRING, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_base58_decode, 0, 0, 1)
+    ZEND_ARG_TYPE_INFO(0, data, IS_STRING, 0)
+ZEND_END_ARG_INFO()
+
 static const zend_function_entry base58_functions[] = {
-    PHP_FE(base58_encode, NULL)
-    PHP_FE(base58_decode, NULL)
+    PHP_FE(base58_encode, arginfo_base58_encode)
+    PHP_FE(base58_decode, arginfo_base58_decode)
     PHP_FE_END
 };
 
