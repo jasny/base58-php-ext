@@ -20,6 +20,9 @@
   <api>beta</api>
  </stability>
  <license uri="https://opensource.org/licenses/MIT">MIT License</license>
+ <notes>
+   First PECL release.
+ </notes>
  <contents>
   <dir name="/">
    <file name="CREDITS" role="doc" />
