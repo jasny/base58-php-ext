@@ -28,3 +28,4 @@ base58.lo
 php_test_results_*.txt
 tests/*
 !tests/*.phpt
+configure.ac
