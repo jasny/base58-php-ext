@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>base58</name>
+ <channel>pecl.php.net</channel>
+ <summary>Encode and decode data with base58</summary>
+ <description>Encode and decode data with base58 (Bitcoin alphabet)</description>
+ <lead>
+  <name>Arnold Daniels</name>
+  <user>jasny</user>
+  <email>jasny@php.net</email>
+  <active>yes</active>
+ </lead>
+ <date>2019-02-25</date>
+ <version>
+  <release>0.1.3</release>
+  <api>0.1.0</api>
+ </version>
+ <stability>
+  <release>beta</release>
+  <api>beta</api>
+ </stability>
+ <license uri="https://opensource.org/licenses/MIT">MIT License</license>
+ <contents>
+  <dir name="/">
+   <file name="CREDITS" role="doc" />
+   <file name="LICENSE" role="doc" />
+   <file name="README.md" role="doc" />
+   <file name="config.m4" role="src" />
+   <file name="config.w32" role="src" />
+   <file name="base58.c" role="src" />
+   <file name="php_base58.h" role="src" />
+   <file name="tests/base58_decode.phpt" role="test" />
+   <file name="tests/base58_encode.phpt" role="test" />
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>7.0.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.3</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <providesextension>base58</providesextension>
+ <extsrcrelease />
+</package>
+

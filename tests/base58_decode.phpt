@@ -1,5 +1,5 @@
 --TEST--
-Check for base58_decode
+Test base58_decode
 --SKIPIF--
 <?php if (!extension_loaded("base58")) print "skip"; ?>
 --FILE--
