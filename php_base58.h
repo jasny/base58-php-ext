@@ -42,8 +42,6 @@
 # define PHP_BASE58_API
 #endif
 
-static PHP_MINFO_FUNCTION(base58);
-
 static PHP_FUNCTION(base58_encode);
 static PHP_FUNCTION(base58_decode);
 
