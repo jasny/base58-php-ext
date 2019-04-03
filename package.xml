@@ -12,7 +12,7 @@
  </lead>
  <date>2019-02-25</date>
  <version>
-  <release>0.1.3</release>
+  <release>0.1.4</release>
   <api>0.1.0</api>
  </version>
  <stability>
@@ -21,7 +21,7 @@
  </stability>
  <license uri="https://opensource.org/licenses/MIT">MIT License</license>
  <notes>
-   First PECL release.
+   Fix build for Windows.
  </notes>
  <contents>
   <dir name="/">
