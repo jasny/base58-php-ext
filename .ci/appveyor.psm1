@@ -98,14 +98,26 @@ Function Ensure7ZipIsInstalled {
 Function InstallLibbase58 {
 	Write-Host "Install libbase58" -foregroundcolor Cyan
 
-	$Repository = "https://github.com/bitcoin/libbase58.git"
+	$GitRepo = "https://github.com/bitcoin/libbase58.git"
+	$GitBranch = "holland-windows-build"
+	$GitRemoteBranch = "pull/7/head:${GitBranch}"
 	$InstallPath = "C:\projects\libbase58"
 
 	If (-not (Test-Path $InstallPath)) {
-		Write-Host "Clone libbase58 repository from: ${Repository} ..."
-		git clone "$Repository" -q --depth=1 "$DestinationPath"
-		git fetch origin pull/7/head:holland-windows-build
-		git checkout holland-windows-build
+		Write-Host "Clone libbase58 repository from: ${GitRepo} ..."
+
+		$Result = (& git clone "$Repository" -q --depth=1 "$DestinationPath")
+		$GitExitCode = $LASTEXITCODE
+		If ($7zipExitCode -ne 0) {
+			Throw "An error occurred while cloning repository [$GitRepo]. Git Exit Code was [$GitExitCode]"
+		}
+
+		$Result = (& git fetch origin "$GitRemoteBranch")
+		If ($7zipExitCode -ne 0) {
+			Throw "An error occurred while fetching [$GitRemoteBranch] from [$GitRepo]. Git Exit Code was [$GitExitCode]"
+		}
+
+		$Result = (& git checkout "$GitBranch")
 	}
 
 	If (-not (Test-Path "${InstallPath}\php.ini")) {
