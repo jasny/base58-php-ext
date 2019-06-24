@@ -3,7 +3,6 @@
 setlocal enableextensions enabledelayedexpansion
 
 	REM pull and build bitcoin/libbase58
-	
 	echo Cloning Bitcoin libbase58 repository ...
 	git clone -q --depth=1 https://github.com/bitcoin/libbase58.git C:\projects\libbase58
 	pushd C:\projects\libbase58
@@ -18,17 +17,17 @@ setlocal enableextensions enabledelayedexpansion
 	REM set up PHP
 	mkdir C:\projects\php-sdk >NUL 2>NUL
 	cd C:\projects\php-sdk
-    wget %PHP_SDK_BINARY_TOOLS_URL%/%PHP_SDK_BINARY_TOOLS_PACKAGE% --no-check-certificate -q -O %PHP_SDK_BINARY_TOOLS_PACKAGE%
-    7z x -y %PHP_SDK_BINARY_TOOLS_PACKAGE%
+	Invoke-WebRequest %PHP_SDK_BINARY_TOOLS_URL%/%PHP_SDK_BINARY_TOOLS_PACKAGE% -OutFile %PHP_SDK_BINARY_TOOLS_PACKAGE%
+	7z x -y %PHP_SDK_BINARY_TOOLS_PACKAGE%
 	cmd /c bin\phpsdk_buildtree.bat phpdev
 	pushd phpdev
 	ren vc9 vc14
 	pushd vc14\x64
-    git clone https://git.php.net/repository/php-src.git
+	git clone https://git.php.net/repository/php-src.git
 	cd php-src
 	git checkout PHP-%PHP_REL%
 	cd ..
-	wget %PHP_DEPS_URL%/%PHP_DEPS_PACKAGE% --no-check-certificate -q -O %PHP_DEPS_PACKAGE%
+	Invoke-WebRequest %PHP_DEPS_URL%/%PHP_DEPS_PACKAGE% -OutFile %PHP_DEPS_PACKAGE%
 	7z x -y %PHP_DEPS_PACKAGE%
 	popd
 	popd
