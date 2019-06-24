@@ -106,19 +106,19 @@ Function InstallLibbase58 {
 	If (-not (Test-Path $InstallPath)) {
 		Write-Host "Clone libbase58 repository from: ${GitRepo} ..."
 
-		$Result = (& git clone "$GitRepo" -q --depth=1 "$InstallPath")
+		$Result = (& git clone "$GitRepo" -q --depth=1 "$InstallPath" --quiet)
 		$GitExitCode = $LASTEXITCODE
 		If ($GitExitCode -ne 0) {
 			Throw "An error occurred while cloning repository [$GitRepo]. Git Exit Code was [$GitExitCode]"
 		}
 
-		$Result = (& git -C "$InstallPath" fetch origin "$GitRemoteBranch")
+		$Result = (& git -C "$InstallPath" fetch origin "$GitRemoteBranch" --quiet)
 		$GitExitCode = $LASTEXITCODE
 		If ($GitExitCode -ne 0) {
 			Throw "An error occurred while fetching [$GitRemoteBranch] from [$GitRepo]. Git Exit Code was [$GitExitCode]"
 		}
 
-		$Result = (& git -C "$InstallPath" checkout "$GitBranch")
+		$Result = (& git -C "$InstallPath" checkout "$GitBranch" --quiet)
 	}
 
 	If (-not (Test-Path "${InstallPath}\php.ini")) {
