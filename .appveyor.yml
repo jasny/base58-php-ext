@@ -60,9 +60,11 @@ build_script:
   - ps: InitializeBuildVars
   - '"%VSCOMNTOOLS%\VsDevCmd" %PLATFORM%'
   - '"%VSCOMNTOOLS%\..\..\VC\vcvarsall.bat" %ARCH%'
-  - phpsdk_setvars
+	- pushd C:\projects\libbase58
   - cmd: cl /W4 /c base58.c
   - cmd: lib /out:libbase58.lib base58.obj
+	- popd
+  - phpsdk_setvars
   - phpize
   - ps: InitializeReleaseVars
   - cmd: configure.bat --disable-all --with-extra-includes=c:\projects\libbase58 --with-extra-libs=c:\projects\libbase58 --with-base58=shared --with-prefix=C:\projects\php
