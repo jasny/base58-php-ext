@@ -20,6 +20,27 @@ environment:
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       PHP_BUILD_CRT: vc14
       PHP_DEPS_PACKAGE: deps-7.0-vc14-x64.7z
+    - PHP_REL: 7.1
+      ARCHITECTURE: x64
+      ARCH: amd64
+      ZTS_STATE: disable
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      PHP_BUILD_CRT: vc14
+      PHP_DEPS_PACKAGE: deps-7.2-vc14-x64.7z
+    - PHP_REL: 7.2
+      ARCHITECTURE: x64
+      ARCH: amd64
+      ZTS_STATE: disable
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      PHP_BUILD_CRT: vc14
+      PHP_DEPS_PACKAGE: deps-7.2-vc14-x64.7z
+    - PHP_REL: 7.3
+      ARCHITECTURE: x64
+      ARCH: amd64
+      ZTS_STATE: disable
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      PHP_BUILD_CRT: vc14
+      PHP_DEPS_PACKAGE: deps-7.3-vc14-x64.7z
 
 # Uncomment the following two lines to use RDP to debug "stuck" builds
 #init:
