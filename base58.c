@@ -75,18 +75,17 @@ ZEND_GET_MODULE(base58)
 
 PHP_FUNCTION(base58_encode)
 {
-    const char *data;
-    size_t data_len;
+    zend_string *data;
 
     zend_string *b58;
 
-    if (zend_parse_parameters(ZEND_NUM_ARGS(), "s", &data, &data_len) == FAILURE) {
-        RETURN_FALSE;
-    }
+    ZEND_PARSE_PARAMETERS_START(1, 1)
+        Z_PARAM_STR(data)
+    ZEND_PARSE_PARAMETERS_END();
 
-    b58 = zend_string_alloc(ceil(data_len * 1.5) + 1, 0);
+    b58 = zend_string_alloc(ceil(ZSTR_LEN(data) * 1.5) + 1, 0);
 
-    if (!b58enc(ZSTR_VAL(b58), &ZSTR_LEN(b58), data, data_len)) {
+    if (!b58enc(ZSTR_VAL(b58), &ZSTR_LEN(b58), ZSTR_VAL(data), ZSTR_LEN(data))) {
         zend_string_free(b58);
 
         php_error_docref(NULL, E_WARNING, "Failed to base58 encode string");
@@ -101,22 +100,21 @@ PHP_FUNCTION(base58_encode)
 
 PHP_FUNCTION(base58_decode)
 {
-    const char *b58;
-    size_t b58_len;
+    zend_string *b58;
 
     char *data;
     size_t data_len;
 
     zend_string *result;
 
-    if (zend_parse_parameters(ZEND_NUM_ARGS(), "s", &b58, &b58_len) == FAILURE) {
-        RETURN_FALSE;
-    }
+    ZEND_PARSE_PARAMETERS_START(1, 1)
+        Z_PARAM_STR(b58)
+    ZEND_PARSE_PARAMETERS_END();
 
-    data_len = b58_len;
+    data_len = ZSTR_LEN(b58);
     data = emalloc(data_len);
 
-    if (!b58tobin(data, &data_len, b58, b58_len)) {
+    if (!b58tobin(data, &data_len, ZSTR_VAL(b58), ZSTR_LEN(b58))) {
         efree(data);
 
         php_error_docref(NULL, E_WARNING, "Failed to base58 decode string");
@@ -124,7 +122,7 @@ PHP_FUNCTION(base58_decode)
     }
 
     /* libbase58 starts at the end of the buffer, so skip preceding '\0' chars. */
-    result = zend_string_init(data + (b58_len - data_len), data_len, 0);
+    result = zend_string_init(data + (ZSTR_LEN(b58) - data_len), data_len, 0);
     efree(data);
 
     RETURN_STR(result);
