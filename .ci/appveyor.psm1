@@ -120,10 +120,6 @@ Function InstallLibbase58 {
 
 		$Result = (& git -C "$InstallPath" checkout "$GitBranch" --quiet)
 	}
-
-	If (-not (Test-Path "${InstallPath}\php.ini")) {
-		Copy-Item "${InstallPath}\php.ini-development" "${InstallPath}\php.ini"
-	}
 }
 
 Function EnsureRequiredDirectoriesPresent {
