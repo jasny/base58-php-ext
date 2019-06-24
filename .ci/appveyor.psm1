@@ -99,26 +99,30 @@ Function InstallLibbase58 {
 	Write-Host "Install libbase58" -foregroundcolor Cyan
 
 	$GitRepo = "https://github.com/bitcoin/libbase58.git"
-	$GitBranch = "holland-windows-build"
-	$GitRemoteBranch = "pull/7/head:${GitBranch}"
+	$GitBranch = "windows-build"
+	$GitRemoteBranch = "pull/12/head:${GitBranch}"
 	$InstallPath = "C:\projects\libbase58"
 
 	If (-not (Test-Path $InstallPath)) {
 		Write-Host "Clone libbase58 repository from: ${GitRepo} ..."
 
-		$Result = (& git clone "$GitRepo" -q --depth=1 "$InstallPath" --quiet)
+		git clone "$GitRepo" "$InstallPath" --quiet
 		$GitExitCode = $LASTEXITCODE
 		If ($GitExitCode -ne 0) {
 			Throw "An error occurred while cloning repository [$GitRepo]. Git Exit Code was [$GitExitCode]"
 		}
 
-		$Result = (& git -C "$InstallPath" fetch origin "$GitRemoteBranch" --quiet)
+		git -C "$InstallPath" fetch origin "$GitRemoteBranch" --quiet
 		$GitExitCode = $LASTEXITCODE
 		If ($GitExitCode -ne 0) {
 			Throw "An error occurred while fetching [$GitRemoteBranch] from [$GitRepo]. Git Exit Code was [$GitExitCode]"
 		}
 
-		$Result = (& git -C "$InstallPath" checkout "$GitBranch" --quiet)
+		git -C "$InstallPath" checkout "$GitBranch" --quiet
+		$GitExitCode = $LASTEXITCODE
+		If ($GitExitCode -ne 0) {
+			Throw "An error occurred with [git checkout $GitBranch]. Git Exit Code was [$GitExitCode]"
+		}
 	}
 }
 
@@ -126,13 +130,13 @@ Function BuildLibbase58 {
 	Write-Host "Build libbase58" -foregroundcolor Cyan
 
 	pushd C:\projects\libbase58
-	$Result = (& cl /W4 /c base58.c 2>&1) | Out-Null
+	cl /W4 /c base58.c 2>&1 | Out-Null
 	$BuildExitCode = $LASTEXITCODE
 	If ($BuildExitCode -ne 0) {
 		Throw "An error occurred while building libbase58. Cl Exit Code was [$BuildExitCode]"
 	}
 
-	$Result = (& lib /out:libbase58.lib base58.obj) | Out-Null
+	lib /out:libbase58.lib base58.obj | Out-Null
 	$BuildExitCode = $LASTEXITCODE
 	If ($BuildExitCode -ne 0) {
 		Throw "An error occurred while building libbase58. Lib Exit Code was [$BuildExitCode]"
