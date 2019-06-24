@@ -122,7 +122,7 @@ Function InstallLibbase58 {
 	}
 }
 
-Function InstallLibbase58 {
+Function BuildLibbase58 {
 	Write-Host "Build libbase58" -foregroundcolor Cyan
 
 	pushd C:\projects\libbase58
