@@ -126,8 +126,18 @@ Function BuildLibbase58 {
 	Write-Host "Build libbase58" -foregroundcolor Cyan
 
 	pushd C:\projects\libbase58
-	cl /W4 /c base58.c
-	lib /out:libbase58.lib base58.obj
+	$Result = (& cl /W4 /c base58.c) | out-null
+	$BuildExitCode = $LASTEXITCODE
+	If ($BuildExitCode -ne 0) {
+		Throw "An error occurred while building libbase58. Cl Exit Code was [$BuildExitCode]"
+	}
+
+	$Result = (& lib /out:libbase58.lib base58.obj) | out-null
+	$BuildExitCode = $LASTEXITCODE
+	If ($BuildExitCode -ne 0) {
+		Throw "An error occurred while building libbase58. Lib Exit Code was [$BuildExitCode]"
+	}
+
 	popd
 }
 
