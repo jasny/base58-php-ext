@@ -122,6 +122,15 @@ Function InstallLibbase58 {
 	}
 }
 
+Function InstallLibbase58 {
+	Write-Host "Build libbase58" -foregroundcolor Cyan
+
+	pushd C:\projects\libbase58
+	cl /W4 /c base58.c
+	lib /out:libbase58.lib base58.obj
+	popd
+}
+
 Function EnsureRequiredDirectoriesPresent {
 	If (-not (Test-Path 'C:\Downloads')) {
 		New-Item -ItemType Directory -Force -Path 'C:\Downloads' | Out-Null
