@@ -108,12 +108,13 @@ Function InstallLibbase58 {
 
 		$Result = (& git clone "$GitRepo" -q --depth=1 "$InstallPath")
 		$GitExitCode = $LASTEXITCODE
-		If ($7zipExitCode -ne 0) {
+		If ($GitExitCode -ne 0) {
 			Throw "An error occurred while cloning repository [$GitRepo]. Git Exit Code was [$GitExitCode]"
 		}
 
 		$Result = (& git -C "$InstallPath" fetch origin "$GitRemoteBranch")
-		If ($7zipExitCode -ne 0) {
+		$GitExitCode = $LASTEXITCODE
+		If ($GitExitCode -ne 0) {
 			Throw "An error occurred while fetching [$GitRemoteBranch] from [$GitRepo]. Git Exit Code was [$GitExitCode]"
 		}
 
@@ -124,6 +125,7 @@ Function InstallLibbase58 {
 		Copy-Item "${InstallPath}\php.ini-development" "${InstallPath}\php.ini"
 	}
 }
+
 Function EnsureRequiredDirectoriesPresent {
 	If (-not (Test-Path 'C:\Downloads')) {
 		New-Item -ItemType Directory -Force -Path 'C:\Downloads' | Out-Null
