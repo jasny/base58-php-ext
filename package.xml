@@ -12,7 +12,7 @@
  </lead>
  <date>2019-02-25</date>
  <version>
-  <release>0.1.4</release>
+  <release>0.1.5</release>
   <api>0.1.0</api>
  </version>
  <stability>
@@ -39,7 +39,7 @@
  <dependencies>
   <required>
    <php>
-    <min>7.0.0</min>
+    <min>7.1.0</min>
    </php>
    <pearinstaller>
     <min>1.4.3</min>
