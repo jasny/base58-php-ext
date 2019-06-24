@@ -13,7 +13,7 @@ Function InitializeReleaseVars {
 		}
 	}
 
-	$Env:RELEASE_ZIPBALL = "psr_${Env:PLATFORM}_${Env:VC_VER}_${Env:PHP_VER}_${Env:APPVEYOR_BUILD_VERSION}"
+	$Env:RELEASE_ZIPBALL = "base58_${Env:PLATFORM}_${Env:VC_VER}_${Env:PHP_VER}_${Env:APPVEYOR_BUILD_VERSION}"
 }
 
 Function InstallPhpDevPack {
@@ -282,7 +282,7 @@ Function PrepareReleasePackage {
 	}
 
 	Copy-Item -Path (Join-Path -Path $Env:APPVEYOR_BUILD_FOLDER -ChildPath '\*') -Filter '*.md' -Destination "${PackagePath}" -Force
-	Copy-Item "${Env:RELEASE_FOLDER}\php_psr.dll" "${PackagePath}"
+	Copy-Item "${Env:RELEASE_FOLDER}\php_base58.dll" "${PackagePath}"
 
 	Set-Location "${PackagePath}"
 	$Result = (& 7z a "${Env:RELEASE_ZIPBALL}.zip" *.*)

@@ -78,5 +78,5 @@ on_failure :
 
 artifacts:
   - path: '.\$(RELEASE_ZIPBALL).zip'
-    name: psr
+    name: http_message
     type: zip
