@@ -13,7 +13,7 @@ Function InitializeReleaseVars {
 		}
 	}
 
-	$Env:RELEASE_ZIPBALL = "psr_${Env:PLATFORM}_${Env:VC_VER}_${Env:PHP_VER}_${Env:APPVEYOR_BUILD_VERSION}"
+	$Env:RELEASE_ZIPBALL = "base58_${Env:PLATFORM}_${Env:VC_VER}_${Env:PHP_VER}_${Env:APPVEYOR_BUILD_VERSION}"
 }
 
 Function InstallPhpDevPack {
@@ -98,20 +98,53 @@ Function Ensure7ZipIsInstalled {
 Function InstallLibbase58 {
 	Write-Host "Install libbase58" -foregroundcolor Cyan
 
-	$Repository = "https://github.com/bitcoin/libbase58.git"
+	$GitRepo = "https://github.com/bitcoin/libbase58.git"
+	$GitBranch = "windows-build"
+	$GitRemoteBranch = "pull/12/head:${GitBranch}"
 	$InstallPath = "C:\projects\libbase58"
 
 	If (-not (Test-Path $InstallPath)) {
-		Write-Host "Clone libbase58 repository from: ${Repository} ..."
-		git clone "$Repository" -q --depth=1 "$DestinationPath"
-		git fetch origin pull/7/head:holland-windows-build
-		git checkout holland-windows-build
-	}
+		Write-Host "Clone libbase58 repository from: ${GitRepo} ..."
 
-	If (-not (Test-Path "${InstallPath}\php.ini")) {
-		Copy-Item "${InstallPath}\php.ini-development" "${InstallPath}\php.ini"
+		git clone "$GitRepo" "$InstallPath" --quiet
+		$GitExitCode = $LASTEXITCODE
+		If ($GitExitCode -ne 0) {
+			Throw "An error occurred while cloning repository [$GitRepo]. Git Exit Code was [$GitExitCode]"
+		}
+
+		git -C "$InstallPath" fetch origin "$GitRemoteBranch" --quiet
+		$GitExitCode = $LASTEXITCODE
+		If ($GitExitCode -ne 0) {
+			Throw "An error occurred while fetching [$GitRemoteBranch] from [$GitRepo]. Git Exit Code was [$GitExitCode]"
+		}
+
+		git -C "$InstallPath" checkout "$GitBranch" --quiet
+		$GitExitCode = $LASTEXITCODE
+		If ($GitExitCode -ne 0) {
+			Throw "An error occurred with [git checkout $GitBranch]. Git Exit Code was [$GitExitCode]"
+		}
 	}
 }
+
+Function BuildLibbase58 {
+	Write-Host "Build libbase58" -foregroundcolor Cyan
+
+	pushd C:\projects\libbase58
+	cl /W4 /c base58.c 2>&1 | Out-Null
+	$BuildExitCode = $LASTEXITCODE
+	If ($BuildExitCode -ne 0) {
+		Throw "An error occurred while building libbase58. Cl Exit Code was [$BuildExitCode]"
+	}
+
+	lib /out:libbase58.lib base58.obj | Out-Null
+	$BuildExitCode = $LASTEXITCODE
+	If ($BuildExitCode -ne 0) {
+		Throw "An error occurred while building libbase58. Lib Exit Code was [$BuildExitCode]"
+	}
+
+	popd
+}
+
 Function EnsureRequiredDirectoriesPresent {
 	If (-not (Test-Path 'C:\Downloads')) {
 		New-Item -ItemType Directory -Force -Path 'C:\Downloads' | Out-Null
@@ -253,7 +286,7 @@ Function PrepareReleasePackage {
 	}
 
 	Copy-Item -Path (Join-Path -Path $Env:APPVEYOR_BUILD_FOLDER -ChildPath '\*') -Filter '*.md' -Destination "${PackagePath}" -Force
-	Copy-Item "${Env:RELEASE_FOLDER}\php_psr.dll" "${PackagePath}"
+	Copy-Item "${Env:RELEASE_FOLDER}\php_base58.dll" "${PackagePath}"
 
 	Set-Location "${PackagePath}"
 	$Result = (& 7z a "${Env:RELEASE_ZIPBALL}.zip" *.*)
