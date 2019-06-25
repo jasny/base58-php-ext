@@ -15,6 +15,7 @@ matrix:
 branches:
   only:
   - master
+  - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
 
 # Travis is running Ubuntu 12.04 which doesn't have package libbase58-dev
 before_install:
@@ -39,7 +40,7 @@ before_deploy:
 deploy:
   provider: releases
   api_key:
-    secret: "757bAS++SjfI975VAI0bXKrEMXPy45gILr0x9Fo55WXhw//abmiykxX7CNsN4ySEqERMjRL6lK/btfYWhmo1rW1LSQ9/8Lf0XuKQdGQQW9A7w/BdU1R9i44f8Wbwb+wLEm+HPhzsB9AggfCxGgzylzvUeqIEosZJ/IFwPug/MrJlJ9TIti1/hVhOvymJj8x8G2ecM52V19YS3Tic4e7JqPdtZWd7gz6VTjlGfredQAbSLSptKfk2m9LVJH8xZHdL13B7f+v67k2LjRCEoy0KFmL8T8b4ATjFzENr93Rjrwa2W87weGa6bFa+ljqrhd8uCzBWj/8Z4eznvErh9tIq8Ae940xI3jgtwcJ00HJ+0mCfuZY6fMCDkqvs+bZsfG7gUOhnbHBHxNPBH+i9Wl91OlYzz8oYRb3NT3zKHreXwLwKJptpALXeadvrLdRVoHIase9IC2z/Y2mHeLyV8LvZq77zB00TmOkGHksf7QRlBQlPuJRMO07jmRVCy22OdrTU6PNMgqUlxrT2O1BoDA0hLMJ/NpsW2I4yzGPB+oWcLr8Yr8izp2ruYPwJ4wwXIZgqgwB5p9y25zPdFGE4VwQuJnuDWKevpoNm4nNnquIhLmCSvvu/CBXgMDyxDijuReO/fFGdqyGu/CmAECXUjbp+ieIV/m2+LGgoeDWqBPkB2kA="
+    secure: "31pI/baU/F7Emsw6v4V/5JNQQHXpLkN8Pk1HBBwj0fVYpiAGAG04NivfR/797LTN9yOT7mHTVtQ6gx0tbN/cRtaWMvre5MNI3OlB88RERrhUgFIEKaDw0Vv0Ef8vISCLa60Au8LcXc94EIVYvuz9LCwe0N386hnMAMTrhtRj7JYdAJg+fCCptrsUDCwUiYu2TYOYMNi9CwMR5dYv5CKEPB+5Or71AYuw3MhvTw1fxvCo4b4oDhMGj0MmuyroJtB3qGODNR8xIHG3h+DRsxHmYZpU+inMxgDbV5MacxNw5hGgxHAS1cgxVGtPCXHYQ6LcHlWcbNSp63OzKYJyS4xWgHHEO/j6gajq5wm/g2ilUilLe/nl0k/qIlKbPI23aiy5I2ok7qrpOvASz3YElA9UCbuP/2Qp0LXLEqLK4nUzl0rs2K73cOx4xahRrpnrLBdNQ+E08kFgOruR+/zLlo/kRV3VhEYBZHHkb2E6iSD2p08tEpFZPjt/x1aJxBHZkceBu19VN4JHhAzK2dod9ajzAO+ZQkogFOY3zQPqZvi76lT538cCxPWbCebYLvd5rtftpox4+qUwAQjMh7PFbAor3BfgEjTsLwDcyivgw1aY1gPSEylPj9pu2WMpbJsHn2CDRL7vWd5+DyAMroN94gh1u3NSjDk30odvnIFKAcymsac="
   file_glob: true
   file: base58-*.tgz
   skip_cleanup: true
