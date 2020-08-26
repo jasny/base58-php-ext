@@ -1,3 +1,5 @@
+![improved PHP library](https://user-images.githubusercontent.com/100821/46372249-e5eb7500-c68a-11e8-801a-2ee57da3e5e3.png)
+
 # Base58 PHP extension
 
 [![Build Status](https://api.travis-ci.org/improved-php-library/base58-php-ext.svg?branch=master)](https://travis-ci.org/improved-php-library/base58-php-ext)
