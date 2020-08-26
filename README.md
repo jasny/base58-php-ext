@@ -1,6 +1,6 @@
 # Base58 PHP extension
 
-[![Build Status](https://travis-ci.org/legalthings/base58-php-ext.svg?branch=master)](https://travis-ci.org/legalthings/base58-php-ext)
+[![Build Status](https://api.travis-ci.org/improved-php-library/base58-php-ext.svg?branch=master)](https://travis-ci.org/improved-php-library/base58-php-ext)
 [![Build status](https://ci.appveyor.com/api/projects/status/7rof1vr8mv4kam17/branch/master?svg=true)](https://ci.appveyor.com/project/jasny/base58-php-ext/branch/master)
 
 PHP extension for base58 encoding and decoding using the Bitcoin alphabet.
@@ -12,7 +12,7 @@ Using this extension is about 100 times faster than using userspace functions.
 * PHP 7.x
 * [libbase58](https://github.com/bitcoin/libbase58)
 
-_Ubuntu users can install libbase58 with headers using `apt install libbase58-dev`._
+_Ubuntu/Debian users can install libbase58 with headers using `apt install libbase58-dev`._
 
 ## Installation
 
