@@ -18,6 +18,14 @@ _Ubuntu/Debian users can install libbase58 with headers using `apt install libba
 
 ## Installation
 
+The extension is [available from pecl](https://pecl.php.net/package/base58).
+
+    pecl install base58-beta
+
+### Manual build
+
+Instead of installing this extension from pecl, you can build it manually
+
     phpize
     ./configure --with-base58
     make
