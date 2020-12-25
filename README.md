@@ -11,10 +11,7 @@ Using this extension is about 100 times faster than using userspace functions.
 
 ## Requirements
 
-* PHP 7.x
-* [libbase58](https://github.com/bitcoin/libbase58)
-
-_Ubuntu/Debian users can install libbase58 with headers using `apt install libbase58-dev`._
+* PHP 7.x or 8.x
 
 ## Installation
 

@@ -1,13 +1,10 @@
 // $Id$
 // vim:ft=javascript
 
-ARG_WITH("base58", "Include base58 support", "no");
+ARG_ENABLE("base58", "enable base58", "no");
 
 if (PHP_BASE58 != "no") {
-    if (CHECK_LIB("libbase58.lib", "base58", PHP_BASE58) &&
-		CHECK_HEADER_ADD_INCLUDE("libbase58.h", "CFLAGS_BASE58")) {
-		EXTENSION("base58", "base58.c");
-   		AC_DEFINE('HAVE_BASE58', 1 , 'Have base58 support');
-    	PHP_INSTALL_HEADERS("ext/base58/", "php_base58.h");
-	}
+	EXTENSION("base58", "base58.c");
+	AC_DEFINE('HAVE_BASE58', 1 , 'whether base58 is enabled');
+	PHP_INSTALL_HEADERS("ext/base58/", "php_base58.h");
 }

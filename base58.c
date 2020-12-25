@@ -33,12 +33,10 @@
 #endif
 
 #include "php.h"
-#include "php_ini.h"
 #include "php_base58.h"
 #include "zend_exceptions.h"
-#include "ext/standard/info.h"
 
-#include <libbase58.h>
+#include "lib/libbase58.h"
 
 #if HAVE_BASE58
 

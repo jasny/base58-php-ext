@@ -46,7 +46,5 @@ static PHP_FUNCTION(base58_encode);
 static PHP_FUNCTION(base58_decode);
 
 extern zend_module_entry base58_module_entry;
-#define phpext_base58_ptr &base58_module_entry
 
 #endif
-
