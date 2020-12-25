@@ -5,6 +5,7 @@ ARG_ENABLE("base58", "enable base58", "no");
 
 if (PHP_BASE58 != "no") {
 	EXTENSION("base58", "base58.c");
+	ADD_SOURCES(configure_module_dirname + "/lib", "libbase58.c", "base58");
 	AC_DEFINE('HAVE_BASE58', 1 , 'whether base58 is enabled');
 	PHP_INSTALL_HEADERS("ext/base58/", "php_base58.h");
 }

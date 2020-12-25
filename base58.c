@@ -81,7 +81,7 @@ PHP_FUNCTION(base58_encode)
         Z_PARAM_STR(data)
     ZEND_PARSE_PARAMETERS_END();
 
-    b58 = zend_string_alloc(ceil(ZSTR_LEN(data) * 1.5) + 1, 0);
+    b58 = zend_string_alloc((size_t)ceil(ZSTR_LEN(data) * 1.5) + 1, 0);
 
     if (!b58enc(ZSTR_VAL(b58), &ZSTR_LEN(b58), ZSTR_VAL(data), ZSTR_LEN(data))) {
         zend_string_free(b58);

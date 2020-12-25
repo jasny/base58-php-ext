@@ -3,7 +3,7 @@ project(base58 C)
 
 add_compile_definitions(HAVE_BASE58)
 
-set(SOURCE_FILES php_base58 base58.c lib/base58.c)
+set(SOURCE_FILES php_base58 base58.c lib/libbase58.c)
 
 execute_process (
         COMMAND php-config --include-dir
