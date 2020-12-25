@@ -8,27 +8,33 @@ branches:
 
 environment:
   EXTNAME: base58
+  VC_VERSION: 15
+  APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
 
   matrix:
     - PHP_VERSION: 7.2
-      VC_VERSION: 15
       BUILD_TYPE: Win32
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
 
     - PHP_VERSION: 7.2
-      VC_VERSION: 15
       BUILD_TYPE: nts-Win32
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
 
     - PHP_VERSION: 7.3
-      VC_VERSION: 15
       BUILD_TYPE: Win32
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
 
     - PHP_VERSION: 7.3
-      VC_VERSION: 15
       BUILD_TYPE: nts-Win32
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+
+    - PHP_VERSION: 7.4
+      BUILD_TYPE: Win32
+
+    - PHP_VERSION: 7.4
+      BUILD_TYPE: nts-Win32
+
+    - PHP_VERSION: 8.0
+      BUILD_TYPE: Win32
+
+    - PHP_VERSION: 8.0
+      BUILD_TYPE: nts-Win32
 
   PHP_SDK_VERSION: 2.1.9
   TEST_PHP_EXECUTABLE: C:\php\php.exe
