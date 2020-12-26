@@ -31,7 +31,7 @@
 #ifndef PHP_BASE58_H
 #define PHP_BASE58_H 1
 
-#define PHP_BASE58_VERSION "0.1.4"
+#define PHP_BASE58_VERSION "1.0.0"
 #define PHP_BASE58_EXTNAME "base58"
 
 #ifdef PHP_WIN32
