@@ -47,3 +47,4 @@ deploy:
   prerelease: false
   on:
     tags: true
+`
