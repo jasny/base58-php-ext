@@ -12,7 +12,7 @@
  </lead>
  <date>2020-12-26</date>
  <version>
-  <release>1.0.1</release>
+  <release>1.0.2</release>
   <api>1.0.0</api>
  </version>
  <stability>
@@ -21,7 +21,7 @@
  </stability>
  <license uri="https://raw.githubusercontent.com/improved-php-library/base58-php-ext/master/LICENSE">MIT License</license>
  <notes>
-Release as v1.0.1 with build fix
+Casing fix config.m4
  </notes>
  <contents>
   <dir name="/">
@@ -31,6 +31,10 @@ Release as v1.0.1 with build fix
    <file name="LICENSE" role="doc"/>
    <file name="php_base58.h" role="src"/>
    <file name="README.md" role="doc"/>
+   <dir name="autoconf">
+    <file name="pecl.m4" role="src"/>
+    <file name="php-executable.m4" role="src"/>
+   </dir>
    <dir name="lib">
     <file name="libbase58.c" role="src"/>
     <file name="libbase58.h" role="src"/>
@@ -54,6 +58,22 @@ Release as v1.0.1 with build fix
  <providesextension>base58</providesextension>
  <extsrcrelease/>
  <changelog>
+  <release>
+   <date>2020-12-26</date>
+   <time>21:25:53</time>
+   <version>
+    <release>1.0.2</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="https://raw.githubusercontent.com/improved-php-library/base58-php-ext/master/LICENSE">MIT License</license>
+   <notes>
+Casing fix config.m4
+   </notes>
+  </release>
   <release>
    <date>2020-12-26</date>
    <time>21:29:58</time>
