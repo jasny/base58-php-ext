@@ -2,7 +2,7 @@
   +----------------------------------------------------------------------+
   | Base58 PHP extension                                                 |
   +----------------------------------------------------------------------+
-  | Copyright (c) 2018 Stichting LegalThings One foundation              |
+  | Copyright (c) 2020 Arnold Daniels                                    |
   +----------------------------------------------------------------------+
   | Permission is hereby granted, free of charge, to any person          |
   | obtaining a copy of this software and associated documentation files |
