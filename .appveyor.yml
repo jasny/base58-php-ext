@@ -3,8 +3,8 @@
 branches:
   only:
   - master
-  - appveyor
   - w32
+  - /v\d*\.\d*\.\d*/
 
 environment:
   EXTNAME: base58
