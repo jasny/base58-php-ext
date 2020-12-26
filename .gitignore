@@ -32,3 +32,4 @@ tests/*
 configure.ac
 /cmake-*
 /run-php
+package.xml
