@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>base58</name>
+ <channel>pecl.php.net</channel>
+ <summary>Encode and decode data with base58</summary>
+ <description>PHP extension for base58 encoding and decoding using the Bitcoin alphabet</description>
+ <lead>
+  <name>Arnold Daniels</name>
+  <user>jasny</user>
+  <email>jasny@php.net</email>
+  <active>yes</active>
+ </lead>
+ <date>2020-12-26</date>
+ <version>
+  <release>1.0.1</release>
+  <api>1.0.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="https://raw.githubusercontent.com/improved-php-library/base58-php-ext/master/LICENSE">MIT License</license>
+ <notes>
+Release as v1.0.1 with build fix
+ </notes>
+ <contents>
+  <dir name="/">
+   <file name="base58.c" role="src"/>
+   <file name="config.m4" role="src"/>
+   <file name="CREDITS" role="doc"/>
+   <file name="LICENSE" role="doc"/>
+   <file name="php_base58.h" role="src"/>
+   <file name="README.md" role="doc"/>
+   <dir name="lib">
+    <file name="libbase58.c" role="src"/>
+    <file name="libbase58.h" role="src"/>
+   </dir>
+   <dir name="tests">
+    <file name="base58_decode.phpt" role="test"/>
+    <file name="base58_encode.phpt" role="test"/>
+   </dir>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>7.0.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.3</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <providesextension>base58</providesextension>
+ <extsrcrelease/>
+ <changelog>
+  <release>
+   <date>2020-12-26</date>
+   <time>21:29:58</time>
+   <version>
+    <release>1.0.1</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="https://raw.githubusercontent.com/improved-php-library/base58-php-ext/master/LICENSE">MIT License</license>
+   <notes>
+Release as v1.0.1 with build fix
+   </notes>
+  </release>
+  <release>
+   <date>2020-12-26</date>
+   <time>19:42:04</time>
+   <version>
+    <release>1.0.0</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.php.net/license/3_0.txt">PHP License</license>
+   <notes>
+Release as v1.0.0
+   </notes>
+  </release>
+ </changelog>
+</package>
