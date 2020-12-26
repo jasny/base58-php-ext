@@ -40,7 +40,7 @@ before_deploy:
 deploy:
   provider: releases
   auth_token:
-    secure: <your encrypted token>
+    secure: "k/GzEf1hM424VqbIE2qSaGA7D5DsITF5l5G2s2VEwGqrb7qThWFTFXmM72u+B7CITkabUu6CwPh7lMgVr/IrZhjOVkxv99qyOkN87v8MR+rx5A6o7R5h/NrqiBQMDVNt2TAFO78ADxj0ek2bCR5UZxHpnWhz5R6YVYC14bUmscNaxtxiQMPtdudcM7SRiZCBZ3DwMylKKdqWdnvBjKj4ZJo/AwTNa0dVnv0Vn5rWONc8T3Rh3bMIHIsf0Hxq7BxNwpBMyG1EX/2q6z899X9D7SIXCItYnEkCxB5WSOqpCh5pl+1FvCllxzXSuRUrCPl5buqwDauF/oJqSXaGHhSt5/P3ez7axzHFnGiKMoc9H71pzxdCjrftiHmHjvK1NI52l9yTr1hR/MuDGWelC+NWVJjm336owND9wq1l+VfeFx4e7DhaSD47fXCj+zQpZ9+j5qnnj0EWCssVPt1MB+cpEZ0k/1UgIqE+Qgr6WO66kvsOQWYMARQu7/f3qVNarXpJ4pjbs140tSeKlPRDXHb7xtLsy8ulMqpyhEPKApnSk4r0QCH7XMd6NY+SCiFOwfJjaz8F4EDHBjZkH/cuSumL9IoSkkiwwH2daV8kgE8jNus4gGAZWbAtR5W3rMOlCVrIRIBQ4uZs6nDogzfyWGPPHriUX3LLTcx60zMrX8JdN8Y="
   file: "$RELEASE_PACKAGE"
   skip_cleanup: true
   name: "$TRAVIS_TAG"
