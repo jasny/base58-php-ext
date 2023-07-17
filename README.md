@@ -2,7 +2,7 @@
 
 # Base58 PHP extension
 
-[![Build Status](https://api.travis-ci.org/improved-php-library/base58-php-ext.svg?branch=master)](https://travis-ci.org/improved-php-library/base58-php-ext)
+[![Build Status](https://api.travis-ci.org/jasny/base58-php-ext.svg?branch=master)](https://travis-ci.org/jasny/base58-php-ext)
 [![Build status](https://ci.appveyor.com/api/projects/status/7rof1vr8mv4kam17/branch/master?svg=true)](https://ci.appveyor.com/project/jasny/base58-php-ext/branch/master)
 
 PHP extension for base58 encoding and decoding using the Bitcoin alphabet.
